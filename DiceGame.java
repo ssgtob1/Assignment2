@@ -7,18 +7,25 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DiceGame {
 
 	public static void main(String[] args) {
+		//Init Variables Needed For Tracking
 		int maxScoreSingleDie = 0;
 		int minScoreSingleDie = 0;
 		int totRollsSingleDie = 0;
 		int maxScoreDoubleDie = 0;
 		int minScoreDoubleDie = 0;
 		int totRollsDoubleDie = 0;
+		//Using Example of RNG
 		long seed = new Date().getTime();
 		Random rnd = new Random(seed);
+		//Loop through the game 100 times
 		for (int i = 0; i < 100; i++){
+			//keep track of total rolls in case loop is changed
 			totRollsSingleDie = i + 1;
+			//create new dice roll
 			DiceRoll dr = new DiceRoll();
+			//get results from the dice rolls
 			int currentScore = dr.rollOneDie(rnd);
+			//Calculate the min and max scores for all of the rolls
 			if (minScoreSingleDie == 0 && currentScore != 0){
 				minScoreSingleDie = currentScore;
 			}else{
@@ -33,6 +40,7 @@ public class DiceGame {
 			}
 						
 		}
+		//Two dice game using same methods as above 
 		for (int i = 0; i < 100; i++){
 			totRollsDoubleDie = i + 1;
 			DiceRoll dr = new DiceRoll();
@@ -51,6 +59,7 @@ public class DiceGame {
 			}
 			
 		}
+		//Print results of both games
 		System.out.printf("A single die was rolled %d times\n", totRollsSingleDie);
 		System.out.printf("The maximum score was: %d\n", maxScoreSingleDie);
 		System.out.printf("The minimum score was: %d\n", minScoreSingleDie);
@@ -69,7 +78,7 @@ class DiceRoll {
 	
 	
 	
-	
+	//Roll one die game
 	public int rollOneDie(Random rnd){
 		int currentRoll;
 		int total = 0;
@@ -88,6 +97,7 @@ class DiceRoll {
 	return total;
 	
 	}
+	//roll two dice game
 	public int rollTwoDice(){
 		int currentRollDie1 = 0;
 		int currentRollDie2 = 0;
